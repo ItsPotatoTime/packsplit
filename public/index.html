@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Packsplit</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Modpack settings">
+        <a class="brand-link" href="./" aria-label="Packsplit home">
+          <h1>Packsplit</h1>
+        </a>
+
+        <section class="pack-library" aria-label="Saved modpacks">
+          <div class="library-heading">
+            <div>
+              <span>Saved packs</span>
+              <strong id="currentPackSummary">My Modpack</strong>
+            </div>
+            <button id="togglePackMenu" class="menu-toggle" type="button" aria-controls="packMenu" aria-expanded="true">Hide</button>
+          </div>
+
+          <div id="packMenu" class="pack-menu">
+            <div id="packList" class="pack-list" role="listbox" aria-label="Saved modpacks"></div>
+
+            <div class="library-actions">
+              <button id="newPack" class="button" type="button">New pack</button>
+              <button id="importPack" class="button" type="button">Import pack</button>
+              <button id="deletePack" class="button danger" type="button">Delete pack</button>
+              <input id="importPackFile" type="file" accept=".zip,.mrpack,application/zip" hidden />
+            </div>
+          </div>
+        </section>
+
+        <label class="field">
+          <span>Pack name</span>
+          <input id="packName" type="text" value="My Modpack" autocomplete="off" />
+        </label>
+
+        <div class="field-grid">
+          <label class="field">
+            <span>Minecraft</span>
+            <select id="minecraftVersion">
+              <option value="1.20.1">1.20.1</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Loader</span>
+            <select id="loader">
+              <option value="fabric">Fabric</option>
+              <option value="forge">Forge</option>
+              <option value="neoforge">NeoForge</option>
+              <option value="quilt">Quilt</option>
+            </select>
+          </label>
+        </div>
+
+        <section class="stats" aria-label="Pack summary">
+          <div>
+            <strong id="clientCount">0</strong>
+            <span>Client</span>
+          </div>
+          <div>
+            <strong id="bothCount">0</strong>
+            <span>Both</span>
+          </div>
+          <div>
+            <strong id="serverCount">0</strong>
+            <span>Server</span>
+          </div>
+        </section>
+
+        <p id="databaseSize" class="database-size">Database: 0 B</p>
+
+        <div class="actions">
+          <button id="exportClient" class="button primary" type="button">Export client</button>
+          <button id="exportServer" class="button" type="button">Export server</button>
+          <button id="clearPack" class="button danger" type="button">Clear pack</button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="search-bar">
+          <label class="search-field">
+            <span>Search mods</span>
+            <input id="searchInput" type="search" placeholder="Sodium, Create, WorldEdit..." autocomplete="off" />
+          </label>
+          <button id="searchButton" class="button primary" type="button">Search</button>
+        </div>
+
+        <p id="status" class="status" role="status">Ready. Choose a Minecraft version and search for a mod.</p>
+
+        <section id="modDetail" class="mod-detail" aria-label="Mod details" hidden></section>
+
+        <section id="results" class="results" aria-label="Search results"></section>
+
+        <div class="columns" aria-label="Modpack sides">
+          <section class="lane" data-lane="client">
+            <header>
+              <h2>Client mods</h2>
+              <span>Players only</span>
+            </header>
+            <div id="clientMods" class="mod-list"></div>
+          </section>
+
+          <section class="lane" data-lane="both">
+            <header>
+              <h2>Both sides</h2>
+              <span>Client and server</span>
+            </header>
+            <div id="bothMods" class="mod-list"></div>
+          </section>
+
+          <section class="lane" data-lane="server">
+            <header>
+              <h2>Server mods</h2>
+              <span>Server upload</span>
+            </header>
+            <div id="serverMods" class="mod-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
